@@ -1,93 +1,115 @@
-# Instructions
-This project is a resource page used in AI4SG class final project.
+# San Jose Commute Advisor
 
-## 1. Clone a package 
-Download the package into VS Code by running the following in VS Code terminal:
-```bash
-git clone https://github.com/unicode101/118i-tutorial.git
+A comprehensive commute recommendation system for San Jose professionals, helping them plan optimal routes and departure times to arrive at work by 9 AM.
+
+## Features
+
+- **Personalized Route Recommendations**: Choose between freeways, local roads, or a combination
+- **Real-time Traffic Analysis**: Consider current traffic conditions and historical patterns
+- **Weather Integration**: Account for weather conditions that might affect commute times
+- **AI-Powered Insights**: Get natural language explanations of recommendations
+- **Interactive Maps**: Visualize recommended routes and alternatives
+- **Historical Analysis**: View crash data and risk factors by time, location, and conditions
+
+## Prerequisites
+
+- Python 3.9 or higher
+- Docker and Docker Compose
+- API keys for:
+  - OpenAI
+  - OpenWeatherMap
+  - OpenRouteService
+
+## Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/sanjose-commute-advisor.git
+   cd sanjose-commute-advisor
+   ```
+
+2. Create a `.env` file with your API keys:
+   ```
+   OPENAI_API_KEY=your_openai_api_key
+   OPENWEATHERMAP_API_KEY=your_openweathermap_api_key
+   OPENROUTESERVICE_API_KEY=your_openrouteservice_api_key
+   ```
+
+3. Build and run with Docker Compose:
+   ```bash
+   docker-compose up --build
+   ```
+
+4. Access the application:
+   - Streamlit UI: http://localhost:8501
+   - FastAPI docs: http://localhost:8000/docs
+
+## API Endpoints
+
+### POST /predict
+Get commute recommendations based on preferences.
+
+Request body:
+```json
+{
+  "preferred_roads": ["freeway", "local", "mixed"],
+  "start_location": "Your home address",
+  "end_location": "Work address",
+  "arrival_time": "09:00",
+  "day_of_week": "Monday",
+  "weather_consideration": true,
+  "traffic_consideration": true
+}
 ```
 
-## 2. Run the cloned project 
-First, please update your API key setting. Please follow the tutorial below to protect your API key. 
-Follow **4. Use Environment Variables in place of your API key** in the tutorial [Best Practices for API Key Safety](https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety).
+### GET /explain/{route_id}
+Get detailed explanation of a specific route.
 
+## Development
 
-## 3. Review OpenAI capabilities
-* **[Text generation](https://platform.openai.com/docs/guides/text-generation)**
-    - Lab 2, Lab 4, Lab 5, Lab 6
-    - Translate languages (Page 4)
-    - Draft documents
-    - Write computer code
-    - Answer questions about a knowledge base
-    - Analyze texts
-    - Give software a natural language interface
-    - Tutor in a range of subjects
-    - Simulate characters for games
-    - [More OpenAI examples](https://platform.openai.com/examples) 
+1. Create a virtual environment:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
 
-* **[Image generation](https://platform.openai.com/docs/guides/images)**
-    - Lab 2
-    - Page 3
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-* **[Vision (Visual recognition)](https://platform.openai.com/docs/guides/vision)**
-    - Not covered in labs, but the code is simple yet powerful
+3. Run the application:
+   ```bash
+   # Terminal 1: FastAPI
+   uvicorn api.main:app --reload
+   
+   # Terminal 2: Streamlit
+   streamlit run app.py
+   ```
 
-* **[Text-to-speech](https://platform.openai.com/docs/guides/text-to-speech)**
-    - Page 5
+## Testing
 
-* **[Speech-to-text](https://platform.openai.com/docs/guides/speech-to-text)**
-    - Lab 4
-    - Page 3
+Run tests with pytest:
+```bash
+pytest
+```
 
-* **[See more](https://platform.openai.com/docs/api-reference)** 
+## Contributing
 
-## 4. Review Streamlit capabliites
-* **UI Design**
-    - [st.write and magic commands](https://docs.streamlit.io/library/api-reference/write-magic)
-    - [Input widget](https://docs.streamlit.io/library/api-reference/widgets)
-    - [Text elements](https://docs.streamlit.io/library/api-reference/text)
-    - [Data elements](https://docs.streamlit.io/library/api-reference/data)
-    - [Chart elements](https://docs.streamlit.io/library/api-reference/charts)
-    - [Layouts and Containers](https://docs.streamlit.io/library/api-reference/layout)
-    - [Media elements](https://docs.streamlit.io/library/api-reference/media)
-    - [Chat elements](https://docs.streamlit.io/library/api-reference/chat)
-    - [Display progress and status](https://docs.streamlit.io/library/api-reference/status)
-    - [Control flow](https://docs.streamlit.io/library/api-reference/control-flow)
-    - [Theming](https://docs.streamlit.io/library/advanced-features/theming)
-    - [Theming Example](https://github.com/streamlit/theming-showcase-blue/tree/main)
-    - [Colors](https://coolors.co/)
-    - [Fonts](https://fonts.google.com/)
-    - [A cheat sheet of Streamlit code](https://docs.streamlit.io/library/cheatsheet) 
-* **More capabilities**
-    - [Multipage apps - Streamlit Docs](https://docs.streamlit.io/library/advanced-features/multipage-apps)
-    - [Components • Streamlit](https://streamlit.io/components)
-    - [Connect to data sources - Streamlit Docs](https://docs.streamlit.io/knowledge-base/tutorials/databases)
-    - [Dataframes - Streamlit Docs](https://docs.streamlit.io/library/advanced-features/dataframes)
-    - [File Uploads](https://docs.streamlit.io/library/api-reference/widgets/st.file_uploader)
-* **Deploy Your App to the Web**
-    - [Streamlit Community Cloud](https://docs.streamlit.io/streamlit-community-cloud/deploy-your-app)
-    - [Deploy Streamlit apps](https://docs.streamlit.io/knowledge-base/tutorials/deploy) 
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-## 5. Collaboration tools
-- **Github** See [Section 6] (https://learn.microsoft.com/en-us/visualstudio/liveshare/quickstart/share) for more details
-- **Live Share VS Code** [Check this tutorial](https://learn.microsoft.com/en-us/visualstudio/liveshare/quickstart/share)
+## License
 
-## 6. Learn how to use Git and Github
-- **[How to Use Git and GitHub](https://www.freecodecamp.org/news/introduction-to-git-and-github/)** 
-- **[Git Tutorial for Absolute Beginners](https://www.youtube.com/watch?v=CvUiKWv2-C0)** 
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 7. Working with 3rd party APIs or libraries
-- Helpful Libraries
-    - [requests library · PyPI](https://pypi.org/project/requests/) (useful for sending HTTP requests to interact with APIs)
-    - [The Twilio Python Helper Library](https://www.twilio.com/docs/libraries/reference/twilio-python/) (connect to the Twilio API; can make calls and send SMS)
-    - [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/) – parsing HTML and scraping the web
-    - [Pandas](https://pandas.pydata.org/) – open-source data analysis 
-    - [PyMuPDF](https://pymupdf.readthedocs.io/en/latest/) – extract text from PDFs 
-    - [pdfquery · PyPI](https://pypi.org/project/pdfquery/) – transform a PDF document into an element tree 
-- Helpful APIs
-    - [Website Carbon API](https://api.websitecarbon.com/)
-    - [Air Pollution API](https://openweathermap.org/api/air-pollution)
-    - [Spotipy](https://spotipy.readthedocs.io/en/2.22.1/)
-    - [Twitter Developer Platform overview | Docs](https://developer.twitter.com/en/docs/platform-overview)
+## Acknowledgments
 
-Contributors: YeeKit Chan, Erica Lai
+- California Department of Transportation for traffic data
+- OpenStreetMap for map data
+- OpenAI for AI-powered insights
+- OpenWeatherMap for weather data
+- OpenRouteService for routing data 

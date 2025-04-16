@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"  # FastAPI
+      - "8501:8501"  # Streamlit
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENWEATHERMAP_API_KEY=${OPENWEATHERMAP_API_KEY}
+      - OPENROUTESERVICE_API_KEY=${OPENROUTESERVICE_API_KEY}
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+    networks:
+      - commute-network
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - commute-network
+
+volumes:
+  redis-data:
+
+networks:
+  commute-network:
+    driver: bridge 

@@ -1,0 +1,16 @@
+Date,Time,Location,Severity,Vehicles_Involved,Injuries,Fatalities,Weather,Road_Condition,Light_Condition,Collision_Type
+2024-01-01,07:30,HWY 101,Minor,2,1,0,Clear,Dry,Daylight,Rear-end
+2024-01-01,08:15,280 Expressway,Major,3,2,0,Rain,Wet,Daylight,Side-impact
+2024-01-01,17:45,87 Expressway,Severe,2,3,1,Fog,Wet,Dark,Head-on
+2024-01-02,07:00,85 Expressway,Minor,2,0,0,Clear,Dry,Daylight,Rear-end
+2024-01-02,08:30,17 Expressway,Major,2,1,0,Rain,Wet,Daylight,Side-impact
+2024-01-02,18:00,HWY 101,Minor,2,0,0,Clear,Dry,Dark,Rear-end
+2024-01-03,07:15,280 Expressway,Minor,2,0,0,Clear,Dry,Daylight,Rear-end
+2024-01-03,08:45,87 Expressway,Major,3,2,0,Fog,Wet,Daylight,Side-impact
+2024-01-03,17:30,85 Expressway,Minor,2,0,0,Clear,Dry,Daylight,Rear-end
+2024-01-04,07:45,17 Expressway,Severe,2,2,1,Rain,Wet,Daylight,Head-on
+2024-01-04,09:00,HWY 101,Major,2,1,0,Clear,Dry,Daylight,Side-impact
+2024-01-04,18:15,280 Expressway,Minor,2,0,0,Clear,Dry,Dark,Rear-end
+2024-01-05,08:00,87 Expressway,Minor,2,0,0,Clear,Dry,Daylight,Rear-end
+2024-01-05,09:30,85 Expressway,Major,3,2,0,Rain,Wet,Daylight,Side-impact
+2024-01-05,19:00,17 Expressway,Minor,2,0,0,Clear,Dry,Dark,Rear-end 
